@@ -1,0 +1,20 @@
+# Virtual Environment
+venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Reports & Logs
+reports/
+logs/
+report.html
+
+# Screenshots (optional)
+screenshots/failed/
+
+# OS / Editor
+.DS_Store
+.vscode/
+.idea/
