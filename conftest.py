@@ -7,8 +7,12 @@ from playwright.sync_api import sync_playwright
 def page(request):
     with sync_playwright() as p:
         browser = p.chromium.launch(
-            headless=False,
-            args=["--start-maximized"]
+        headless=True,
+        args=[
+        "--no-sandbox",
+        "--disable-dev-shm-usage",
+        "--disable-gpu"
+        ]
         )
 
         context = browser.new_context(

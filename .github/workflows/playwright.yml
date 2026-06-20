@@ -2,15 +2,16 @@ name: Playwright Tests
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   test:
     runs-on: ubuntu-latest
+
+    env:
+      CI: true
 
     steps:
       - name: Checkout Repository
@@ -28,15 +29,15 @@ jobs:
 
       - name: Install Playwright Browsers
         run: |
-          playwright install --with-deps chromium
+          python -m playwright install --with-deps chromium
 
       - name: Run Tests
         run: |
           pytest -v --html=reports/report.html --self-contained-html
 
       - name: Upload HTML Report
-        uses: actions/upload-artifact@v4
         if: always()
+        uses: actions/upload-artifact@v4
         with:
-          name: playwright-html-report
+          name: playwright-report
           path: reports/
