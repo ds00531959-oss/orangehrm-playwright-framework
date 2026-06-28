@@ -6,7 +6,11 @@ from pages.dashboard_page import DashboardPage
 @pytest.mark.smoke
 @pytest.mark.regression
 def test_login(page):
-    page.goto(BASE_URL)
+    page.goto(
+    BASE_URL,
+    wait_until="domcontentloaded",
+    timeout=120000
+    )
 
     login = LoginPage(page)
     login.login(USERNAME, PASSWORD)
